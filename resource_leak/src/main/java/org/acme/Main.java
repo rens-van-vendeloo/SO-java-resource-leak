@@ -34,8 +34,11 @@ public class Main {
         public int run(String... args) throws Exception {
             
             System.out.println("DO POST");
-            ClientUtilities.handleConnectionRefused(() -> testClient.makePost(someDataClass));
-            System.out.println("Rest of program executes..");
+            while(ClientUtilities.handleConnectionRefused(() -> testClient.makePost(someDataClass))){
+                System.out.println("polling...");
+                Thread.sleep(1000);
+            }
+            System.out.println("End of program execution");
             
             Quarkus.waitForExit();
             return 0;
