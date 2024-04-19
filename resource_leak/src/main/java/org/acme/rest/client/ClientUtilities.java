@@ -6,7 +6,7 @@ import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.core.Response;
 
 public class ClientUtilities {
-    public static Response handleConnectionRefused(Supplier<Response> restClientCall) {
+    public static void handleConnectionRefused(Supplier<Response> restClientCall) {
         Response response = null;
         try {
             response = restClientCall.get();
