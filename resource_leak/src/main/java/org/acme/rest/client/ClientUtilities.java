@@ -6,24 +6,20 @@ import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.core.Response;
 
 public class ClientUtilities {
-    public static void handleConnectionRefused(Supplier<Response> restClientCall) {
-        Response response = null;
-        try {
-            response = restClientCall.get();
+    public static boolean handleConnectionRefused(Supplier<Response> restClientCall) {
+        try (Response response = restClientCall.get()) {
+            // Handle the response here
+            // This is the common handling logic
+            return true;
         } catch (ProcessingException e) {
             if (e.getCause() instanceof ConnectException) {
                 // Handle connection refused error
                 System.out.println("Connection refused: " + e.getMessage());
-                return Response.status(Response.Status.NOT_FOUND).build();
+                return false;
             } else {
                 // Handle other errors
                 throw e;
             }
-        } finally {
-            if (response != null) {
-                response.close();
-            }
         }
-        return Response.status(Response.Status.OK).build();
     }
 }
