@@ -1,4 +1,4 @@
-This repository is part of the following [Stack Overflow question](https://stackoverflow.com/questions/78353106/why-does-my-lambda-function-cause-a-resource-leak-in-java-using-quarkus):
+This repository is part of the following **SOLVED** [Stack Overflow question](https://stackoverflow.com/questions/78353106/why-does-my-lambda-function-cause-a-resource-leak-in-java-using-quarkus):
 
 I have a Quarkus microservice (let's call it A) which makes a POST request to another microservice (let's call it B) using the RestClient. If A makes a request to B, but B is down (i.e. not started yet), then microservice A is automatically stopped by Quarkus due to an unhandled exception, which is normal behaviour. To fix this without having to wrap every call in a try-catch block I have tried the following: 
 
